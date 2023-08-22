@@ -21,13 +21,6 @@ for information on the Petr4 artifact.
    sudo apt-get install m4 libgmp-dev
    ```
 
-### Installing from OPAM
-1. Install petr4 from the opam repository. This will take a while the first time
-   because it installs OPAM dependencies.
-   ```
-   opam install petr4
-   ```
-
 ### Installing from source
 You can use the [scripts](https://github.com/verified-network-toolchain/petr4/tree/main/.github/scripts) to install Petr4. 
 Alternatively, follow theses steps:

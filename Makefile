@@ -22,24 +22,26 @@ WEB_EXAMPLES+=stf-test/custom-stf-tests/register.p4
 
 all: build
 
-build:
-  sed -i -e 's,\$$include_path\$$,"'"$$(dirname "$$(dirname "$$(which p4c)")")"'/share/p4c/p4include/",g' ./bin/test.ml
-  dune build && echo
+changePath:
+	sed -i -e 's,\$$include_path\$$,"'"$$(dirname "$$(dirname "$$(which p4c)")")"'/share/p4c/p4include/",g' ./bin/test.ml
+
+build: changePath
+	dune build && echo
 
 doc:
-  dune build @doc
+	dune build @doc
 
 run: build
-  dune exec -- $(NAME)
+	dune exec -- $(NAME)
 
 install: build
-  dune install
+	dune install
 
 clean:
-  dune clean
+	dune clean
 
 web:
-  dune build _build/default/web/web.bc.js --profile release && cp _build/default/web/web.bc.js web/html_build/
+	dune build _build/default/web/web.bc.js --profile release && cp _build/default/web/web.bc.js web/html_build/
 
 stf-errors:
-  cat _build/_tests/Stf-tests/* | grep '\[failure\]' | sed 's/^ *//' | sort | uniq
+	cat _build/_tests/Stf-tests/* | grep '\[failure\]' | sed 's/^ *//' | sort | uniq
